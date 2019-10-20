@@ -1,5 +1,7 @@
 # Travis CLI using Docker
 
+![GitHub](https://img.shields.io/github/license/rcmoutinho/travis-cli) [![](https://images.microbadger.com/badges/version/rcmoutinho/travis-cli.svg)](https://microbadger.com/images/rcmoutinho/travis-cli) [![](https://images.microbadger.com/badges/image/rcmoutinho/travis-cli.svg)](https://microbadger.com/images/rcmoutinho/travis-cli)
+
 This project helps developers that don't want to install the Travis CLI locally but want to have all the benefits of using commands to automate processes instead of manual UI tasks.
 
 Not very familiar with docker? Go to the [docker section](#docker-help) to get the basics to use this project.
