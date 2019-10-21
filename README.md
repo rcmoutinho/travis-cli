@@ -6,6 +6,17 @@ This project helps developers that don't want to install the Travis CLI locally 
 
 Not very familiar with docker? Go to the [docker section](#docker-help) to get the basics to use this project.
 
+## Table of Contents
+
+* [Usage](#usage)
+  * [Docker](#docker-for-linux-/-unix-systems)
+  * [Docker-Compose](#docker-compose-local-configuration)
+* [Secure your Passwords and Tokens](#secure-your-passwords-and-tokens)
+* [Build from the scratch](#build-from-the-scratch)
+* [Using docker-compose on development mode](#using-docker-compose-on-development-mode)
+* [Docker (help!)](#docker-help)
+* [References](#references)
+
 ## Usage
 
 Check out [Travis CLI](https://github.com/travis-ci/travis.rb) documentation to understand what each command does.
