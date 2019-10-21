@@ -45,23 +45,20 @@ _**TIP:** Same here. On Windows environments, the command `$(pwd)` inside of the
 
 This example will use the Travis CLI to protect a GitHub token inside of your `.travis.yml` file.
 
----
-
 _**NOTE:** You will notice that every step has a `--com` parameter. This will force the usage of `travis-ci.com` instead of `travis-ci.org`. You can check more about this topic [here](https://devops.stackexchange.com/a/4305)._
-
----
 
 Let's go a step-by-step process to configure your GitHub configuration with Travis CI.
 
 1.  Make sure you are on the root of the project. This is important to get some Git configuration during the process.
 
 2.  [Login](https://github.com/travis-ci/travis.rb#login) using the travis CLI using your GitHub credentials.
-
+    
     ```
     travis login --com
     ```
-
+    
     The following is showing the login using the `docker-compose` command. Note that if you have _two-factor authentication_, it will ask the code after typing the password.
+    
     ![Travis Login by Command Line](images/travis-login.png "Travis Login by Command Line")
 
 3.  Enable the GitHub project on Travis CI.
@@ -80,9 +77,9 @@ Let's go a step-by-step process to configure your GitHub configuration with Trav
 
     - The `--repo` parameter is optional. The CLI will try to suggest considering the git remote configuration.
 
-    ```
-    Detected repository as username/project-name, is this correct? |yes|
-    ```
+      ```
+      Detected repository as username/project-name, is this correct? |yes|
+      ```
 
     - More about [Travis CI encryption process](https://docs.travis-ci.com/user/encryption-keys/).
 
@@ -211,7 +208,7 @@ Using the command `run`, docker will take care to build the image using `Dockerf
 
 The unique "garbage", would be the docker image created by the service(s), that you can get rid with the following command.
 
-CAUTION: This command will remove all the images, volumes and networks related to this docker-compose configuration. Pay _VERY GOOD_ attention if you merged your `docker-compose` files before executing the following command.
+_**CAUTION:** This command will remove all the images, volumes and networks related to this docker-compose configuration. Pay **VERY GOOD** attention if you merged your `docker-compose` files before executing the following command._
 
 ```
 docker-compose down --rmi local
@@ -221,4 +218,4 @@ docker-compose down --rmi local
 
 Check a [fully automated GitHub project](https://github.com/rcmoutinho/automated-release) using this configuration process to automate software releases. That, by the way, is the project that was the inspiration to create the current one.
 
-In addition to all the google researches, I would give credit to two projects [1](https://github.com/lirantal/docker-travis-cli) [2](https://github.com/andredumas/docker-travis-ci-cli) that I found useful on this journey. Both have the same objective of using Travis CLI with Docker.
+In addition to all the google researches, I would give credit to two projects that I found useful on this journey. Both have the same objective of using Travis CLI with Docker. [[1]](https://github.com/lirantal/docker-travis-cli) [[2]](https://github.com/andredumas/docker-travis-ci-cli)
