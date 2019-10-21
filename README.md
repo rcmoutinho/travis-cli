@@ -14,21 +14,92 @@ The `/app` volume to your root project folder is useful to get CLI help to adjus
 
 The `.travis` folder is very important to the process. It will store your _Travis Secret Key_ to maintain you session during the usage and also keep some other configurations to ease your usage. If you had installed manually, this folder would be located on your user home directory (`~/.travis`). **_>> NEVER <<_** commit the `.travis` folder. It has sensitive information that would expose your API secret key, giving open access to your account.
 
-### Docker
-
-Docker (for linux / unix systems)
+### Docker (for linux / unix systems)
 
 ```
 docker run --rm -v $(pwd):/app -v $(pwd)/.travis:/root/.travis rcmoutinho/travis-cli <command>
 ```
 
-Docker-Compose (local configuration)
+_**TIP:** On Windows environments, the command `$(pwd)` used to get the current folder path maybe a little bit different. But this is the only difference. All the rest is the same in any OS._
+
+### Docker-Compose (local configuration)
 
 ```
 docker-compose run --rm rcmoutinho-travis <command>
 ```
 
-## Example from the scratch
+_**TIP:** Same here. On Windows environments, the command `$(pwd)` inside of the `docker-compose.yml` may be different._
+
+## Secure your Passwords and Tokens
+
+This example will use the Travis CLI to protect a GitHub token inside of your `.travis.yml` file.
+
+---
+
+_**NOTE:** You will notice that every step has a `--com` parameter. This will force the usage of `travis-ci.com` instead of `travis-ci.org`. You can check more about this topic [here](https://devops.stackexchange.com/a/4305)._
+
+---
+
+Let's go a step-by-step process to configure your GitHub configuration with Travis CI.
+
+1.  Make sure you are on the root of the project. This is important to get some Git configuration during the process.
+
+2.  [Login](https://github.com/travis-ci/travis.rb#login) using the travis CLI using your GitHub credentials.
+
+    ```
+    travis login --com
+    ```
+
+    The following is showing the login using the `docker-compose` command. Note that if you have _two-factor authentication_, it will ask the code after typing the password.
+    ![Travis Login by Command Line](images/travis-login.png "Travis Login by Command Line")
+
+3.  Enable the GitHub project on Travis CI.
+
+    ```
+    travis enable --com
+    ```
+
+    _**NOTE:** You can execute `init` command before if don't have the project configuration defined yet (`.travis.yml`)._
+
+4.  Encrypt the GitHub token.
+
+    ```
+    travis encrypt GITHUB_TOKEN="myTokenWithLotsOfNumbersAndLetters123456" --repo username/project-name --com --add
+    ```
+
+    - The `--repo` parameter is optional. The CLI will try to suggest considering the git remote configuration.
+
+    ```
+    Detected repository as username/project-name, is this correct? |yes|
+    ```
+
+    - More about [Travis CI encryption process](https://docs.travis-ci.com/user/encryption-keys/).
+
+    - More about [GitHub Tokens](https://github.com/settings/tokens).
+
+5.  Check your `.travis.yml` to see your new encrypted value.
+
+    ```yml
+    # ...
+    env:
+      global:
+        secure: <ENCRYPTED_TOKEN>
+    # ...
+    ```
+
+That's it! Now your GitHub project is configured with Travis CI, and you can use your token with confidence knowing that everything is secure.
+
+```yml
+# ...
+api_key: "$GITHUB_TOKEN"
+# ...
+```
+
+The good news is that the process remains the same as any other token or password you need to protect on Travis CI automation.
+
+_**TIP:** You can check this [fully automated GitHub project](https://github.com/rcmoutinho/automated-release) using this process to automate software releases. By the way, this project was the inspiration to create the current one._
+
+## Build from the scratch
 
 To test out your _Docker_ configuration, try to get _travis-cli_ usage help, that will build your local image. On the first execution, the image will automatically build.
 
