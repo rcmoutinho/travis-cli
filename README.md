@@ -97,8 +97,6 @@ api_key: "$GITHUB_TOKEN"
 
 The good news is that the process remains the same as any other token or password you need to protect on Travis CI automation.
 
-_**TIP:** You can check this [fully automated GitHub project](https://github.com/rcmoutinho/automated-release) using this process to automate software releases. By the way, this project was the inspiration to create the current one._
-
 ## Build from the scratch
 
 To test out your _Docker_ configuration, try to get _travis-cli_ usage help, that will build your local image. On the first execution, the image will automatically build.
@@ -207,3 +205,9 @@ CAUTION: This command will remove all the images, volumes and networks related t
 ```
 docker-compose down --rmi local
 ```
+
+## References
+
+Check a [fully automated GitHub project](https://github.com/rcmoutinho/automated-release) using this configuration process to automate software releases. That, by the way, is the project that was the inspiration to create the current one.
+
+In addition to all the google researches, I would give credit to two projects [1](https://github.com/lirantal/docker-travis-cli) [2](https://github.com/andredumas/docker-travis-ci-cli) that I found useful on this journey. Both have the same objective of using Travis CLI with Docker.
